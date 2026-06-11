@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imprint —  Product Newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #EDEBE6;
+    font-family: 'Manrope', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .wrap { width: 680px; margin: 0 auto; padding: 40px 0; }
+
+  .page {
+    width: 680px;
+    background: #FAFAF8;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-num-label {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #AAAAAA;
+    font-family: 'Manrope', sans-serif;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  /* ─── SHARED COMPONENTS ─── */
+  .red-bar-top { height: 5px; background: #031f73; }
+  .red-sidebar { position: absolute; left: 0; top: 5px; width: 4px; background: #031f73; }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #031f73;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .footer-bar {
+    border-top: 0.5px solid #E0D8D0;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FAFAF8;
+  }
+  .footer-brand {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A1410;
+    letter-spacing: 2px;
+  }
+  .footer-sub { font-size: 10px; color: #AAAAAA; letter-spacing: 1px; margin-top: 2px; }
+  .footer-dots { display: flex; gap: 8px; align-items: center; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.active { background: #031f73; }
+  .dot.off { background: none; border: 1px solid #CCCCCC; }
+  .footer-page { font-size: 10px; color: #AAAAAA; letter-spacing: 2px; }
+
+  /* ─── PAGE 1: COVER ─── */
+  .p1-top-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 52px;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p1-logo {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #031f73;
+    letter-spacing: 5px;
+  }
+  .p1-issue { font-size: 10px; color: #AAAAAA; letter-spacing: 2px; text-transform: uppercase; }
+
+  .p1-hero {
+    display: flex;
+    min-height: 370px;
+  }
+  .p1-hero-left {
+    flex: 1;
+    padding: 48px 40px 40px;
+  }
+  .p1-hero-right {
+    width: 260px;
+    background: #F4F1EC;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .p1-circle-outer {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid #E0D8D0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .p1-circle-inner {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 0.5px solid #E0D8D0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .p1-circle-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #031f73;
+  }
+  .p1-period-label {
+    font-size: 10px;
+    color: #AAAAAA;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .p1-eyebrow { font-size: 10px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; font-weight: 500; }
+  .p1-h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: #1A1410;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+  }
+  .p1-h1-red { color: #031f73; }
+  .p1-h1-italic {
+    font-family: 'Manrope', sans-serif;
+    font-size: 38px;
+    font-weight: 400;
+    font-style: italic;
+    color: #1A1410;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .p1-subhead {
+    font-size: 13px;
+    color: #888888;
+    line-height: 1.7;
+    max-width: 320px;
+    margin-bottom: 32px;
+  }
+
+  .p1-stats {
+    display: flex;
+    gap: 0;
+    border-top: 0.5px solid #E0D8D0;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p1-stat {
+    flex: 1;
+    padding: 20px 40px;
+    border-right: 0.5px solid #E0D8D0;
+  }
+  .p1-stat:last-child { border-right: none; }
+  .p1-stat-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #031f73;
+  }
+  .p1-stat-num.dark { color: #1A1410; }
+  .p1-stat-label { font-size: 9px; color: #AAAAAA; letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+
+  .p1-contents { padding: 32px 40px 0; }
+  .p1-contents-label { font-size: 10px; color: #AAAAAA; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+  .p1-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: 32px; }
+  .p1-card {
+    background: #FFFFFF;
+    border-left: 2px solid #031f73;
+    padding: 18px 20px;
+  }
+  .p1-card.dark-border { border-left-color: #1A1410; }
+  .p1-card-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #031f73;
+    margin-bottom: 6px;
+  }
+  .p1-card.dark-border .p1-card-num { color: #1A1410; }
+  .p1-card-title { font-size: 13px; font-weight: 500; color: #1A1410; margin-bottom: 4px; }
+  .p1-card-body { font-size: 11px; color: #888888; line-height: 1.6; }
+
+  .p1-milestone {
+    background: #1A1410;
+    margin: 0 40px 32px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .p1-ms-label { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .p1-ms-text { font-family: 'Manrope', sans-serif; font-size: 15px; color: #FFFFFF; font-weight: 400; line-height: 1.5; }
+  .p1-ms-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFFFFF;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ─── PAGE 2: TRACKING + DASHBOARD ─── */
+  .p2-header { padding: 40px 40px 28px; border-bottom: 0.5px solid #E0D8D0; }
+  .p2-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #1A1410;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .p2-divider { width: 40px; height: 3px; background: #031f73; margin-bottom: 14px; }
+  .p2-intro { font-size: 13px; color: #888888; line-height: 1.7; max-width: 520px; }
+
+  .p2-feature-hero {
+    display: flex;
+    gap: 0;
+    margin: 0;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p2-feat-icon-panel {
+    width: 160px;
+    background: #031f73;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 40px 0;
+  }
+  .p2-map-svg { width: 72px; height: 72px; }
+  .p2-feat-content { padding: 32px 36px; flex: 1; }
+  .p2-feat-tag { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+  .p2-feat-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1A1410;
+    margin-bottom: 12px;
+  }
+  .p2-feat-body { font-size: 13px; color: #666666; line-height: 1.7; }
+
+  .p2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .p2-grid-item {
+    padding: 28px 36px;
+    border-right: 0.5px solid #E0D8D0;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p2-grid-item:nth-child(2n) { border-right: none; }
+  .p2-grid-item:nth-child(3), .p2-grid-item:nth-child(4) { border-bottom: none; }
+  .p2-grid-icon { font-size: 22px; margin-bottom: 12px; }
+  .p2-grid-title { font-weight: 500; font-size: 14px; color: #1A1410; margin-bottom: 6px; }
+  .p2-grid-body { font-size: 12px; color: #888888; line-height: 1.65; }
+  .p2-grid-tag { display: inline-block; margin-top: 10px; font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+
+  /* ─── PAGE 3: APP + ASTI ─── */
+  .p3-dark-header {
+    background: #1A1410;
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .p3-dh-circle {
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .p3-dh-circle2 {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(255,255,255,0.04);
+  }
+  .p3-dh-eyebrow { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; font-weight: 500; }
+  .p3-dh-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.1;
+    max-width: 480px;
+    margin-bottom: 14px;
+  }
+  .p3-dh-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 460px; }
+
+  .p3-screens {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p3-screen {
+    padding: 26px 30px;
+    border-right: 0.5px solid #E0D8D0;
+  }
+  .p3-screen:last-child { border-right: none; }
+  .p3-sc-label { font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+  .p3-sc-title { font-weight: 500; font-size: 13px; color: #1A1410; margin-bottom: 6px; }
+  .p3-sc-body { font-size: 11px; color: #888888; line-height: 1.6; }
+
+  .p3-modules { background: #F4F1EC; padding: 28px 40px; }
+  .p3-mod-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A1410;
+    margin-bottom: 18px;
+  }
+  .p3-mod-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .p3-mod-item {
+    background: #FFFFFF;
+    border: 0.5px solid #E0D8D0;
+    padding: 10px 6px;
+    text-align: center;
+  }
+  .p3-mod-icon { font-size: 16px; margin-bottom: 4px; }
+  .p3-mod-name { font-size: 9px; color: #555555; line-height: 1.3; }
+
+  .p3-asti {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    padding: 32px 40px;
+    border-top: 3px solid #031f73;
+    background: #FAFAF8;
+  }
+  .p3-asti-badge {
+    width: 64px;
+    height: 64px;
+    background: #031f73;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .p3-asti-eyebrow { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+  .p3-asti-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1410;
+    margin-bottom: 8px;
+  }
+  .p3-asti-body { font-size: 13px; color: #666666; line-height: 1.7; }
+
+  /* ─── PAGE 4: GROWTH + CLOSE ─── */
+  .p4-hero {
+    display: flex;
+    gap: 0;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p4-hero-left { flex: 1; padding: 40px 40px 36px; }
+  .p4-hero-right {
+    width: 200px;
+    background: #031f73;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    flex-shrink: 0;
+  }
+  .p4-big-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+  .p4-big-label { font-size: 9px; color: rgba(255,255,255,0.65); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; text-align: center; }
+
+  .p4-hero-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1A1410;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .p4-hero-body { font-size: 13px; color: #666666; line-height: 1.7; }
+
+  .p4-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 0.5px solid #E0D8D0;
+  }
+  .p4-stat {
+    padding: 24px 36px;
+    border-right: 0.5px solid #E0D8D0;
+  }
+  .p4-stat:last-child { border-right: none; }
+  .p4-stat-num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #031f73;
+  }
+  .p4-stat-num.dark { color: #1A1410; }
+  .p4-stat-label { font-size: 9px; color: #AAAAAA; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  .p4-timeline { padding: 32px 40px; border-bottom: 0.5px solid #E0D8D0; }
+  .p4-tl-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A1410;
+    margin-bottom: 24px;
+  }
+  .p4-tl-row { display: flex; gap: 0; }
+  .p4-tl-item { flex: 1; padding-right: 16px; position: relative; }
+  .p4-tl-item:last-child { padding-right: 0; }
+  .p4-tl-dot-row { display: flex; align-items: center; margin-bottom: 10px; }
+  .p4-tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #031f73; flex-shrink: 0; }
+  .p4-tl-line { flex: 1; height: 0.5px; background: #E0D8D0; margin-left: 6px; }
+  .p4-tl-item:last-child .p4-tl-line { display: none; }
+  .p4-tl-month { font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; font-weight: 500; }
+  .p4-tl-desc { font-size: 11px; color: #666666; line-height: 1.55; }
+
+  .p4-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    background: #1A1410;
+    gap: 24px;
+  }
+  .p4-cta-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+  .p4-cta-body { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .p4-cta-btn {
+    background: #031f73;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .p4-signoff {
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 0.5px solid #E0D8D0;
+  }
+  .p4-signoff-brand {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A1410;
+    letter-spacing: 3px;
+  }
+  .p4-signoff-sub { font-size: 9px; color: #AAAAAA; letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
+  .p4-signoff-right { text-align: right; }
+  .p4-signoff-year { font-family: 'Manrope', sans-serif; font-size: 28px; font-weight: 700; color: #EEEBE5; }
+
+  @media print {
+    body { background: #fff; }
+    .page-num-label { display: none; }
+    .page { margin-bottom: 0; page-break-after: always; }
+    .wrap { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ══════════ PAGE 1: COVER ══════════ -->
+  <div class="page-num-label">— PAGE 1 OF 4 —</div>
+  <div class="page">
+    <div style="height:5px;background:#031f73;"></div>
+    <div style="position:absolute;left:0;top:5px;width:4px;height:calc(100% - 5px);background:#031f73;"></div>
+
+    <!-- Top nav -->
+    <div class="p1-top-strip">
+      <div class="p1-logo">IMPRINT</div>
+      <div class="p1-issue"> &nbsp;·&nbsp; Product Newsletter </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="p1-hero">
+      <div class="p1-hero-left">
+        <div class="p1-eyebrow">January – June 2026</div>
+        <div class="p1-h1">June 
+<br>Months<br><span class="p1-h1-red"></span></div>
+        <span class="p1-h1-italic">Newsletter.</span>
+        <div class="p1-subhead">Five major features shipped. Ten enterprise clients onboarded. Fifty thousand daily users — and a platform that's only getting started.</div>
+      </div>
+      <div class="p1-hero-right">
+
+         <img src="https://i.ibb.co/XfqS0mqx/image-355.png" alt="" style="position:absolute; right:0px; bottom:0; width:292px; height:auto; z-index:5; object-fit:contain;">
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="p1-stats">
+      <div class="p1-stat">
+        <div class="p1-stat-num">50K+</div>
+        <div class="p1-stat-label">Daily Active Users</div>
+      </div>
+      <div class="p1-stat">
+        <div class="p1-stat-num dark">200+</div>
+        <div class="p1-stat-label">Users Onboarded
+</div>
+      </div>
+      <!-- <div class="p1-stat">
+        <div class="p1-stat-num dark">6 mo</div>
+        <div class="p1-stat-label">To Reach Scale</div>
+      </div> -->
+      <!-- <div class="p1-stat">
+        <div class="p1-stat-num dark">5</div>
+        <div class="p1-stat-label">Features Shipped</div>
+      </div> -->
+    </div>
+
+    <!-- Contents -->
+    <div class="p1-contents">
+      <div class="p1-contents-label">What's inside this edition</div>
+      <div class="p1-cards">
+        <div class="p1-card">
+          <div class="p1-card-num">01</div>
+          <div class="p1-card-title">Real-Time Field Agent Tracking</div>
+          <div class="p1-card-body">Live GPS visibility of every field agent — updated the moment they move.</div>
+        </div>
+        <div class="p1-card dark-border">
+          <div class="p1-card-num">02</div>
+          <div class="p1-card-title">Reimagined Dashboard UI</div>
+          <div class="p1-card-body">A command centre rebuilt from scratch for speed, clarity, and smarter decisions.</div>
+        </div>
+        <div class="p1-card dark-border">
+          <div class="p1-card-num">03</div>
+          <div class="p1-card-title">Optimized Android App</div>
+          <div class="p1-card-body">New 14-module mobile UI with a streamlined flow built for daily field use.</div>
+        </div>
+        <div class="p1-card">
+          <div class="p1-card-num">04</div>
+          <div class="p1-card-title">Asti AI Chatbot</div>
+          <div class="p1-card-body">A RAG-powered AI assistant answering your team's every business question.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestone banner -->
+    <div class="p1-milestone">
+      <div>
+        <div class="p1-ms-label">Growth Milestone</div>
+        <div class="p1-ms-text">Users onboarded within 6 months<br>on 50,000+ daily active sessions</div>
+      </div>
+      <div class="p1-ms-num">50K+</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-bar">
+      <div>
+        <div class="footer-brand">IMPRINT</div>
+        <div class="footer-sub">Field Operations Platform · 2026</div>
+      </div>
+      <div class="footer-dots">
+        <div class="dot active"></div>
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PAGE 2: TRACKING + DASHBOARD ══════════ -->
+  <div class="page-num-label">— PAGE 2 OF 4 —</div>
+  <div class="page">
+    <div style="height:5px;background:#031f73;"></div>
+    <div style="position:absolute;left:0;top:5px;width:4px;height:calc(100% - 5px);background:#031f73;"></div>
+
+    <div class="p2-header">
+      <div class="section-eyebrow">Feature Spotlight · Pages 2 of 4</div>
+      <div class="p2-title">Knowing Where Your<br>Team Is — Always</div>
+      <div class="p2-divider"></div>
+      <div class="p2-intro">Field operations live or die by visibility. These two features give your management team the real-time awareness and dashboard clarity they've always needed — without phone calls, manual check-ins, or guesswork.</div>
+    </div>
+
+    <!-- Feature 01 hero row -->
+    <div class="p2-feature-hero">
+      <div class="p2-feat-icon-panel">
+        <svg class="p2-map-svg" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="30" r="14" stroke="white" stroke-width="2"/>
+          <circle cx="36" cy="30" r="6" fill="white" fill-opacity="0.85"/>
+          <path d="M36 44 L22 56" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M36 44 L50 56" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <circle cx="22" cy="56" r="3" fill="white" fill-opacity="0.5"/>
+          <circle cx="50" cy="56" r="3" fill="white" fill-opacity="0.5"/>
+          <circle cx="36" cy="64" r="2.5" fill="white" fill-opacity="0.25"/>
+          <path d="M18 22 Q22 12 36 10 Q50 12 54 22" stroke="white" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="p2-feat-content">
+        <div class="p2-feat-tag">Feature 01 — Now Live</div>
+        <div class="p2-feat-name">Real-Time Field Agent Tracking</div>
+        <div class="p2-feat-body">See every field agent on a live map the moment they move. Dispatch smarter, respond faster, and give your operations team situational awareness they've always needed — without a single phone call.</div>
+      </div>
+    </div>
+
+    <!-- 2x2 grid -->
+    <div class="p2-grid">
+      <div class="p2-grid-item">
+        <div class="p2-grid-icon">🗺️</div>
+        <div class="p2-grid-title">Live GPS Map View</div>
+        <div class="p2-grid-body">All agents plotted on an interactive live map. Zoom into any territory and see precise positions, routes, and status — continuously updated.</div>
+        <div class="p2-grid-tag">Real-time</div>
+      </div>
+      <div class="p2-grid-item">
+        <div class="p2-grid-icon">📊</div>
+        <div class="p2-grid-title">New Dashboard UI</div>
+        <div class="p2-grid-body">The command centre rebuilt from scratch. Cleaner navigation, smarter data layout, instant access to the metrics that drive decisions.</div>
+        <div class="p2-grid-tag">Feature 02</div>
+      </div>
+      <div class="p2-grid-item">
+        <div class="p2-grid-icon">⏱️</div>
+        <div class="p2-grid-title">Daily Activity Insights</div>
+        <div class="p2-grid-body">Track check-ins, visit durations, and coverage gaps automatically. Know how your team's day is progressing in real time, not at end of day.</div>
+        <div class="p2-grid-tag">Activity</div>
+      </div>
+      <div class="p2-grid-item">
+        <div class="p2-grid-icon">🔔</div>
+        <div class="p2-grid-title">Smart Alerts & Reports</div>
+        <div class="p2-grid-body">Instant alerts for off-route agents, missed visits, or idle time. Exportable daily reports ready in your inbox every morning.</div>
+        <div class="p2-grid-tag">Reporting</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div>
+        <div class="footer-brand">IMPRINT</div>
+        <div class="footer-sub">Field Operations Platform · 2026</div>
+      </div>
+      <div class="footer-page">02 / 04</div>
+      <div class="footer-dots">
+        <div class="dot off"></div>
+        <div class="dot active"></div>
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PAGE 3: APP + ASTI AI ══════════ -->
+  <div class="page-num-label">— PAGE 3 OF 4 —</div>
+  <div class="page">
+    <div style="height:5px;background:#031f73;"></div>
+    <div style="position:absolute;left:0;top:5px;width:4px;height:calc(100% - 5px);background:#031f73;"></div>
+
+    <div class="p3-dark-header">
+      <div class="p3-dh-circle"></div>
+      <div class="p3-dh-circle2"></div>
+      <div class="p3-dh-eyebrow">Feature 03 — Mobile-First Redesign</div>
+      <div class="p3-dh-title">The Imprint App,<br>Reimagined for Android</div>
+      <div class="p3-dh-body">Every screen, every tap, every transition redesigned. The new mobile UI brings a 14-module workflow into one intuitive experience that field teams actually love using every day.</div>
+    </div>
+
+    <!-- 3 columns -->
+    <div class="p3-screens">
+      <div class="p3-screen">
+        <div class="p3-sc-label">Navigation</div>
+        <div class="p3-sc-title">Streamlined Home Flow</div>
+        <div class="p3-sc-body">Agents land on a personalized dashboard with their daily task queue, route, and targets — no digging through menus.</div>
+      </div>
+      <div class="p3-screen">
+        <div class="p3-sc-label">Speed</div>
+        <div class="p3-sc-title">Optimized UI Flow</div>
+        <div class="p3-sc-body">Every critical action — log a visit, submit a collection, raise a ticket — is now just 2 taps away from home.</div>
+      </div>
+      <div class="p3-screen">
+        <div class="p3-sc-label">Design</div>
+        <div class="p3-sc-title">Clean Visual System</div>
+        <div class="p3-sc-body">Bold typography, high-contrast cards, and a red-and-white design language that's instantly recognizable.</div>
+      </div>
+    </div>
+
+    <!-- 14 modules -->
+    <div class="p3-modules">
+      <div class="p3-mod-title">14 Modules — One Seamless App</div>
+      <div class="p3-mod-grid">
+        <div class="p3-mod-item"><div class="p3-mod-icon">🏠</div><div class="p3-mod-name">Home</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">📅</div><div class="p3-mod-name">Daily Activity</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">💬</div><div class="p3-mod-name">Communication</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">👥</div><div class="p3-mod-name">Customer</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">📋</div><div class="p3-mod-name">Lead & Collection</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">💰</div><div class="p3-mod-name">Payroll</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">📦</div><div class="p3-mod-name">Inventory</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">🎫</div><div class="p3-mod-name">Tickets & Services</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">🆘</div><div class="p3-mod-name">Support & FAQ</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">⚙️</div><div class="p3-mod-name">Settings</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">📈</div><div class="p3-mod-name">Report Details</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">🎯</div><div class="p3-mod-name">Target</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">🤖</div><div class="p3-mod-name">Asti AI</div></div>
+        <div class="p3-mod-item"><div class="p3-mod-icon">💭</div><div class="p3-mod-name">Chat</div></div>
+      </div>
+    </div>
+
+    <!-- Asti AI -->
+    <div class="p3-asti">
+      <div class="p3-asti-badge">AI</div>
+      <div>
+        <div class="p3-asti-eyebrow">Feature 04 — AI-Powered Intelligence</div>
+        <div class="p3-asti-title">Meet Asti — Your Intelligent Business Assistant</div>
+        <div class="p3-asti-body">Asti is a RAG-based AI chatbot built directly into Imprint. Ask it anything — policy questions, customer history, collection status, target gaps — and get instant, context-aware answers drawn from your company's own data. No training needed. No prompt engineering. Just ask.</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div>
+        <div class="footer-brand">IMPRINT</div>
+        <div class="footer-sub">Field Operations Platform · 2026</div>
+      </div>
+      <div class="footer-page">03 / 04</div>
+      <div class="footer-dots">
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+        <div class="dot active"></div>
+        <div class="dot off"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PAGE 4: GROWTH + CLOSE ══════════ -->
+  <div class="page-num-label">— PAGE 4 OF 4 —</div>
+  <div class="page">
+    <div style="height:5px;background:#031f73;"></div>
+    <div style="position:absolute;left:0;top:5px;width:4px;height:calc(100% - 5px);background:#031f73;"></div>
+
+    <!-- Hero with big stat -->
+    <div class="p4-hero">
+      <div class="p4-hero-left">
+        <div class="section-eyebrow" style="margin-bottom:14px;">Feature 05 — Growth Milestone</div>
+        <div class="p4-hero-title">200+ users Onboarded<br>in Just 6 Months</div>
+        <div class="p4-hero-body">From first demo to daily deployment — we onboarded 10+ enterprise clients across industries in under six months. Today, Imprint powers over 50,000 daily user sessions, with field teams relying on it as their primary operations tool.</div>
+      </div>
+      <div class="p4-hero-right">
+        <div class="p4-big-num">50K+</div>
+        <div class="p4-big-label">Daily Active<br>Sessions</div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="p4-stats">
+      <div class="p4-stat">
+        <div class="p4-stat-num">10+</div>
+        <div class="p4-stat-label">Enterprise Clients</div>
+      </div>
+      <div class="p4-stat">
+        <div class="p4-stat-num dark">6 mo</div>
+        <div class="p4-stat-label">To Reach Scale</div>
+      </div>
+      <div class="p4-stat">
+        <div class="p4-stat-num dark">14</div>
+        <div class="p4-stat-label">App Modules Shipped</div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="p4-timeline">
+      <img src="https://i.ibb.co/XrVx2bgJ/blob.png" alt="" style="width:100%; height:auto; display:block; object-fit:contain;">
+    </div>
+
+    <!-- CTA -->
+    <div class="p4-cta">
+      <div>
+        <div class="p4-cta-title">What's Coming in H2 2026</div>
+        <div class="p4-cta-body">Advanced analytics, predictive lead scoring, deeper Asti AI integrations, and expanded client onboarding. The best is still ahead.</div>
+      </div>
+      <a href="#" class="p4-cta-btn">Read the Roadmap ↗</a>
+    </div>
+
+    <!-- Sign-off footer -->
+    <div class="p4-signoff">
+      <div>
+        <div class="p4-signoff-brand">IMPRINT</div>
+        <div class="p4-signoff-sub">Field Operations Platform &nbsp;·&nbsp; imprint.app</div>
+      </div>
+      <div class="footer-dots" style="gap:8px;">
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+        <div class="dot off"></div>
+        <div class="dot active"></div>
+      </div>
+      <div class="p4-signoff-right">
+        <div class="p4-signoff-year">2026</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
