@@ -48,6 +48,108 @@
   .divider-h { height: 0.5px; background: #E2DDD6; }
   .divider-v { width: 0.5px; background: #E2DDD6; }
 
+  /* ── SCREENSHOT PLACEHOLDER STYLES ── */
+  .screenshot-zone {
+    position: relative;
+    background: #ffffff;
+    /* border: 1px dashed #C8C2BA; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .screenshot-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(3,31,115,0.03) 8px,
+      rgba(3,31,115,0.03) 9px
+    );
+  }
+
+  .screenshot-zone .ss-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .screenshot-zone .ss-icon {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid #B0A89E;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.6);
+  }
+
+  .screenshot-zone .ss-icon svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+  }
+
+  .screenshot-zone .ss-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #031f73;
+    opacity: 0.7;
+  }
+
+  .screenshot-zone .ss-sub {
+    font-size: 10px;
+    color: #B0A89E;
+    letter-spacing: 0.5px;
+  }
+
+  /* Corner ticks on screenshot zones */
+  .screenshot-zone .tick {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: #031f73;
+    border-style: solid;
+    opacity: 0.3;
+  }
+  .screenshot-zone .tick.tl { top: 8px; left: 8px; border-width: 1.5px 0 0 1.5px; }
+  .screenshot-zone .tick.tr { top: 8px; right: 8px; border-width: 1.5px 1.5px 0 0; }
+  .screenshot-zone .tick.bl { bottom: 8px; left: 8px; border-width: 0 0 1.5px 1.5px; }
+  .screenshot-zone .tick.br { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; }
+
+  /* Dark variant for page 3 */
+  .screenshot-zone.dark-ss {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .screenshot-zone.dark-ss::before {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(255,255,255,0.02) 8px,
+      rgba(255,255,255,0.02) 9px
+    );
+  }
+  .screenshot-zone.dark-ss .ss-label { color: rgba(3,31,115,0.9); opacity: 1; }
+  .screenshot-zone.dark-ss .ss-sub { color: rgba(255,255,255,0.25); }
+  .screenshot-zone.dark-ss .ss-icon { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+  .screenshot-zone.dark-ss .ss-icon svg { opacity: 0.4; stroke: white; }
+  .screenshot-zone.dark-ss .tick { border-color: rgba(255,255,255,0.25); opacity: 1; }
+
   /* ── PAGE 1 COVER ── */
   .p1-nav {
     display: flex; align-items: center; justify-content: space-between;
@@ -57,37 +159,27 @@
   .p1-logo { font-size: 14px; font-weight: 800; color: #031f73; letter-spacing: 5px; }
   .p1-nav-right { font-size: 10px; color: #B0A89E; letter-spacing: 1.5px; text-transform: uppercase; }
 
-  .p1-hero { display: flex; min-height: 340px; }
-  .p1-hero-left { flex: 1; padding: 44px 44px 36px; }
+  .p1-hero { display: flex; min-height: 300px; }
+  .p1-hero-left { flex: 1; padding: 36px 18px 28px 44px; }
   .p1-hero-right {
-    width: 240px; flex-shrink: 0;
+      flex-shrink: 0;
     background: #F2EEE8;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 16px;
+    border-left: 0.5px solid #E2DDD6;
+    position: relative;
   }
 
-  .geo-wrap { position: relative; width: 160px; height: 160px; }
-  .geo-ring {
-    position: absolute; border-radius: 50%;
-    border: 0.5px solid #D4CEC6;
+  /* Hero screenshot zone fills the right panel */
+  .p1-hero-ss {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
   }
-  .geo-ring.r1 { inset: 0; }
-  .geo-ring.r2 { inset: 24px; }
-  .geo-ring.r3 { inset: 48px; }
-  .geo-dot {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 14px; height: 14px;
-    border-radius: 50%; background: #031f73;
-  }
-  .geo-label { font-size: 9px; color: #B0A89E; letter-spacing: 2px; text-transform: uppercase; }
 
   .p1-period { font-size: 10px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
-  .p1-h1 { font-size: 56px; font-weight: 800; color: #1A1612; line-height: 1.0; letter-spacing: -1.5px; }
+  .p1-h1 { font-size: 48px; font-weight: 800; color: #1A1612; line-height: 1.0; letter-spacing: -1.5px; }
   .p1-h1-red { color: #031f73; }
-  .p1-h1-italic { font-size: 36px; font-weight: 300; font-style: italic; color: #1A1612; display: block; margin-top: 2px; margin-bottom: 20px; letter-spacing: -0.5px; }
-  .p1-subhead { font-size: 13px; font-weight: 400; color: #7A7469; line-height: 1.75; }
+  .p1-h1-italic { font-size: 32px; font-weight: 300; font-style: italic; color: #1A1612; display: block; margin-top: 2px; margin-bottom: 18px; letter-spacing: -0.5px; }
+  .p1-subhead { font-size: 12px; font-weight: 400; color: #7A7469; line-height: 1.75; }
 
   .p1-stats { display: flex; }
   .p1-stat { flex: 1; padding: 20px 44px; border-right: 0.5px solid #E2DDD6; }
@@ -148,6 +240,26 @@
   .p2-feat-name { font-size: 20px; font-weight: 700; color: #1A1612; margin-bottom: 10px; letter-spacing: -0.3px; }
   .p2-feat-text { font-size: 13px; color: #5E5950; line-height: 1.75; }
 
+  /* Page 2: full-width screenshot strip */
+  .p2-ss-strip {
+    height: 190px;
+    border-bottom: 0.5px solid #E2DDD6;
+    display: flex;
+    gap: 0;
+  }
+
+  .p2-ss-strip .ss-half {
+    flex: 1;
+    position: relative;
+  }
+  .p2-ss-strip .ss-half:first-child {
+    border-right: 0.5px solid #E2DDD6;
+  }
+  .p2-ss-strip .ss-half .screenshot-zone {
+    width: 100%;
+    height: 100%;
+  }
+
   .p2-grid { display: grid; grid-template-columns: 1fr 1fr; }
   .p2-gc {
     padding: 26px 32px;
@@ -167,7 +279,61 @@
   .p3-dark-c2 { position: absolute; right: 30px; top: 30px; width: 140px; height: 140px; border-radius: 50%; border: 0.5px solid rgba(255,255,255,0.04); }
   .p3-d-eyebrow { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
   .p3-d-title { font-size: 34px; font-weight: 800; color: #FAFAF7; line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.5px; }
-  .p3-d-body { font-size: 13px; color: rgba(250,250,247,0.5); line-height: 1.75; max-width: 460px; }
+  .p3-d-body { font-size: 13px; color: rgba(250,250,247,0.5); line-height: 1.75; max-width: 380px; }
+
+  /* Mobile screenshots strip on dark section */
+  .p3-mobile-row {
+    background: #1A1612;
+    padding: 0 44px 36px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    border-bottom: 0.5px solid #2E2A24;
+    position: relative;
+    z-index: 1;
+  }
+
+  .p3-mobile-frame {
+    flex: 1;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .p3-mobile-frame .screenshot-zone {
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.03);
+    border: none;
+    border-radius: 0;
+  }
+  .p3-mobile-frame .screenshot-zone::before {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(255,255,255,0.015) 8px,
+      rgba(255,255,255,0.015) 9px
+    );
+  }
+  .p3-mobile-frame .ss-label { color: rgba(3,31,115,0.9); opacity: 1; }
+  .p3-mobile-frame .ss-sub { color: rgba(255,255,255,0.2); }
+  .p3-mobile-frame .ss-icon { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+  .p3-mobile-frame .ss-icon svg { opacity: 0.35; stroke: white; }
+  .p3-mobile-frame .tick { border-color: rgba(255,255,255,0.2); opacity: 1; }
+
+  /* Notch bar on mobile frames */
+  .p3-mobile-frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40px; height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 0 0 4px 4px;
+    z-index: 10;
+  }
 
   .p3-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 0.5px solid #E2DDD6; }
   .p3-col { padding: 24px 28px; border-right: 0.5px solid #E2DDD6; }
@@ -194,6 +360,28 @@
   .p3-asti-lbl { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
   .p3-asti-t { font-size: 18px; font-weight: 700; color: #1A1612; margin-bottom: 8px; letter-spacing: -0.2px; }
   .p3-asti-b { font-size: 12px; color: #5E5950; line-height: 1.75; }
+
+  /* Asti AI screenshot zone */
+  .p3-asti-ss {
+    margin: 20px 44px 0;
+    height: 233px;
+    border-top: 0.5px solid #E2DDD6;
+    display: flex;
+    gap: 12px;
+    padding-top: 20px;
+    padding-bottom: 28px;
+  }
+  .p3-asti-ss .ss-part {
+    flex: 1;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .p3-asti-ss .ss-part .screenshot-zone {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+  }
+  .p3-asti-ss .ss-part:first-child { flex: 1.4; }
 
   /* ── PAGE 4 ── */
   .p4-hero { display: flex; border-bottom: 0.5px solid #E2DDD6; }
@@ -224,17 +412,35 @@
   .p4-why-item:nth-last-child(-n+2) { border-bottom: none; }
   .p4-why-dot { width: 5px; height: 5px; border-radius: 50%; background: #031f73; flex-shrink: 0; margin-top: 5px; }
 
-  .p4-tl { padding: 28px 44px; border-bottom: 0.5px solid #E2DDD6; }
-  .p4-tl-t { font-size: 14px; font-weight: 700; color: #1A1612; margin-bottom: 20px; }
-  .p4-tl-row { display: flex; }
-  .p4-tl-item { flex: 1; padding-right: 12px; }
-  .p4-tl-item:last-child { padding-right: 0; }
-  .p4-tl-dr { display: flex; align-items: center; margin-bottom: 8px; }
-  .p4-tl-dot { width: 9px; height: 9px; border-radius: 50%; background: #031f73; flex-shrink: 0; }
-  .p4-tl-line { flex: 1; height: 0.5px; background: #E2DDD6; margin-left: 5px; }
-  .p4-tl-item:last-child .p4-tl-line { display: none; }
-  .p4-tl-m { font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
-  .p4-tl-d { font-size: 10px; color: #5E5950; line-height: 1.5; }
+  /* Page 4: Growth showcase screenshot zone */
+  .p4-ss-showcase {
+    padding: 0 44px 28px;
+    border-bottom: 0.5px solid #E2DDD6;
+    display: flex;
+    gap: 10px;
+    height: 170px;
+    padding-top: 28px;
+  }
+  .p4-ss-showcase .ss-main {
+    flex: 1.8;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .p4-ss-showcase .ss-main .screenshot-zone {
+    width: 100%;
+    height: 100%;
+  }
+  .p4-ss-showcase .ss-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .p4-ss-showcase .ss-side .screenshot-zone {
+    flex: 1;
+    border-radius: 4px;
+    min-height: 0;
+  }
 
   .p4-road { padding: 28px 44px; border-bottom: 0.5px solid #E2DDD6; }
   .p4-road-t { font-size: 14px; font-weight: 700; color: #1A1612; margin-bottom: 14px; }
@@ -294,15 +500,30 @@
 
     <!-- Hero -->
     <div class="p1-hero">
-      <div class="p1-hero-left">
-        <div class="p1-period">June 2026 Edition</div>
-        <div class="p1-h1">Transforming<br>Field Ops<br><span class="p1-h1-red">Through</span></div>
-        <span class="p1-h1-italic">Intelligence & Automation.</span>
-        <div class="p1-subhead">Over the last six months, Imprint has evolved into a comprehensive field operations platform — empowering organizations through a single unified ecosystem for employees, customers, collections, service operations, and business intelligence.</div>
-      </div>
-      
+  <div class="p1-hero-left">
+    <div class="p1-period">June 2026 Edition</div>
+    <div class="p1-h1">
+      Transforming<br>
+      Field Ops<br>
+      <span class="p1-h1-red">Through</span>
     </div>
+    <span class="p1-h1-italic">Intelligence & Automation.</span>
+    <div class="p1-subhead">
+      Over the last six months, Imprint has evolved into a comprehensive field operations platform — empowering organizations through a single unified ecosystem for employees, customers, collections, service operations, and business intelligence.
+    </div>
+  </div>
 
+  <div class="p1-hero-right">
+    <img
+      src="https://i.ibb.co/nq2RPG8p/image-355.png"
+      alt="Imprint Platform Overview"
+      class="hero-dashboard-img"
+      style="
+    height: 445px;
+"
+    />
+  </div>
+</div>
     <!-- Stats -->
     <div class="divider-h"></div>
     <div class="p1-stats">
@@ -406,6 +627,19 @@
       </div>
     </div>
 
+    <!-- SCREENSHOT ZONE: Two-panel — GPS Map View + Dashboard Analytics -->
+    <div class="p2-ss-strip">
+      <div class="ss-half">
+        <div class="screenshot-zone" style="width:100%;height:100%;">
+          <div class="ss-half">
+            <img src="https://i.ibb.co/xqcYRg63/image-33.png" alt="Application Screen"
+              style="width:100%; height:100%; object-fit:contain; display:block;" />
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
     <div class="p2-grid">
       <div class="p2-gc">
         <div class="p2-gc-icon">🗺️</div>
@@ -459,6 +693,7 @@
       <div class="p3-d-title">The New Imprint<br>Mobile Experience</div>
       <div class="p3-d-body">The Imprint Android application has been redesigned to provide a faster, simpler, and more productive experience. With unified navigation and streamlined workflows, field employees perform daily tasks with minimal effort while staying connected to business operations in real time.</div>
     </div>
+ 
 
     <div class="p3-cols">
       <div class="p3-col">
@@ -505,6 +740,15 @@
         <div class="p3-asti-t">Meet Asti — Intelligent Business Assistant</div>
         <div class="p3-asti-b">Asti AI is an enterprise-grade RAG-powered assistant integrated directly into Imprint. Employees and managers access business information instantly through natural conversations — retrieving customer details, service status, collection data, company policies, and activity insights without manual searches or support dependencies. Organizational knowledge meets AI-powered search.</div>
       </div>
+    </div>
+ 
+    <!-- SCREENSHOT ZONE: Asti AI chat interface + knowledge panel -->
+    <div class="p3-asti-ss">
+      <div class="ss-part" style="display:flex;justify-content:center;align-items:center;height: 200px;">
+         <img src="https://i.ibb.co/0ydmkPxR/Screenshot-2026-06-22-151701.png" alt="" style="width:100%;max-width:100%;height:220px;display:block;border-radius:12px;" >
+         
+      </div>
+      
     </div>
 
     <div class="p1-footer">
@@ -572,7 +816,7 @@
       </div>
     </div>
 
-   
+  
 
     <!-- Roadmap -->
     <div class="p4-road">
