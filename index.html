@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Imprint — Product Newsletter June 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: #EDEAE4;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Satoshi', sans-serif;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     color: #1A1612;
@@ -23,7 +23,7 @@
     font-size: 10px;
     letter-spacing: 3px;
     color: #AAA49C;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Satoshi', sans-serif;
     text-transform: uppercase;
     margin-bottom: 10px;
   }
@@ -35,6 +35,76 @@
     overflow: hidden;
     margin-bottom: 40px;
   }
+
+  /* ── LINK BUTTON STYLES ── */
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #031f73;
+    text-decoration: none;
+    border-bottom: 1.5px solid #031f73;
+    padding-bottom: 1px;
+    transition: opacity 0.15s;
+  }
+  .link-btn:hover { opacity: 0.65; }
+  .link-btn::after { content: '↗'; font-size: 9px; }
+
+  .link-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #031f73;
+    text-decoration: none;
+    border: 1.5px solid #031f73;
+    padding: 7px 14px;
+    background: transparent;
+  }
+  .link-btn-outline:hover { background: #031f73; color: #fff; }
+
+  .link-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(250,250,247,0.75);
+    text-decoration: none;
+    border-bottom: 1.5px solid rgba(250,250,247,0.35);
+    padding-bottom: 1px;
+  }
+  .link-btn-ghost:hover { color: #fff; border-bottom-color: #fff; }
+  .link-btn-ghost::after { content: '→'; font-size: 10px; }
+
+  .link-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.08);
+  }
+  .link-btn-white:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
 
   /* Shared */
   .red-top   { height: 4px; background: #031f73; }
@@ -52,7 +122,6 @@
   .screenshot-zone {
     position: relative;
     background: #ffffff;
-    /* border: 1px dashed #C8C2BA; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,23 +153,6 @@
     padding: 16px;
   }
 
-  .screenshot-zone .ss-icon {
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid #B0A89E;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.6);
-  }
-
-  .screenshot-zone .ss-icon svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0.5;
-  }
-
   .screenshot-zone .ss-label {
     font-size: 9px;
     font-weight: 600;
@@ -116,7 +168,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* Corner ticks on screenshot zones */
   .screenshot-zone .tick {
     position: absolute;
     width: 10px;
@@ -130,45 +181,24 @@
   .screenshot-zone .tick.bl { bottom: 8px; left: 8px; border-width: 0 0 1.5px 1.5px; }
   .screenshot-zone .tick.br { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; }
 
-  /* Dark variant for page 3 */
-  .screenshot-zone.dark-ss {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.12);
-  }
-  .screenshot-zone.dark-ss::before {
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 8px,
-      rgba(255,255,255,0.02) 8px,
-      rgba(255,255,255,0.02) 9px
-    );
-  }
-  .screenshot-zone.dark-ss .ss-label { color: rgba(3,31,115,0.9); opacity: 1; }
-  .screenshot-zone.dark-ss .ss-sub { color: rgba(255,255,255,0.25); }
-  .screenshot-zone.dark-ss .ss-icon { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
-  .screenshot-zone.dark-ss .ss-icon svg { opacity: 0.4; stroke: white; }
-  .screenshot-zone.dark-ss .tick { border-color: rgba(255,255,255,0.25); opacity: 1; }
-
   /* ── PAGE 1 COVER ── */
   .p1-nav {
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 44px; height: 54px;
     border-bottom: 0.5px solid #E2DDD6;
   }
-  .p1-logo { font-size: 14px; font-weight: 800; color: #031f73; letter-spacing: 5px; }
+  .p1-logo { font-size: 14px; font-weight: 800; color: #031f73; font-family: poppins; letter-spacing: 2.5px; }
   .p1-nav-right { font-size: 10px; color: #B0A89E; letter-spacing: 1.5px; text-transform: uppercase; }
 
   .p1-hero { display: flex; min-height: 300px; }
   .p1-hero-left { flex: 1; padding: 36px 18px 28px 44px; }
   .p1-hero-right {
-      flex-shrink: 0;
+    flex-shrink: 0;
     background: #F2EEE8;
     border-left: 0.5px solid #E2DDD6;
     position: relative;
   }
 
-  /* Hero screenshot zone fills the right panel */
   .p1-hero-ss {
     width: 100%;
     height: 100%;
@@ -178,8 +208,8 @@
   .p1-period { font-size: 10px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
   .p1-h1 { font-size: 48px; font-weight: 800; color: #1A1612; line-height: 1.0; letter-spacing: -1.5px; }
   .p1-h1-red { color: #031f73; }
-  .p1-h1-italic { font-size: 32px; font-weight: 300; font-style: italic; color: #1A1612; display: block; margin-top: 2px; margin-bottom: 18px; letter-spacing: -0.5px; }
-  .p1-subhead { font-size: 12px; font-weight: 400; color: #7A7469; line-height: 1.75; }
+  .p1-h1-italic { font-size: 32px; font-weight: 300; font-style: italic; color: #1A1612; display: block; margin-top: 2px; margin-bottom: 14px; letter-spacing: -0.5px; }
+  .p1-subhead { font-size: 12px; font-weight: 400; color: #7A7469; line-height: 1.75; margin-bottom: 16px; }
 
   .p1-stats { display: flex; }
   .p1-stat { flex: 1; padding: 20px 44px; border-right: 0.5px solid #E2DDD6; }
@@ -197,7 +227,7 @@
   .p1-card-n { font-size: 22px; font-weight: 800; color: #031f73; line-height: 1; margin-bottom: 6px; }
   .p1-card.alt .p1-card-n { color: #1A1612; }
   .p1-card-t { font-size: 12px; font-weight: 600; color: #1A1612; margin-bottom: 4px; }
-  .p1-card-b { font-size: 11px; font-weight: 400; color: #7A7469; line-height: 1.6; }
+  .p1-card-b { font-size: 11px; font-weight: 400; color: #7A7469; line-height: 1.6; margin-bottom: 10px; }
 
   .p1-banner {
     margin: 0 44px 28px;
@@ -205,8 +235,8 @@
     padding: 20px 24px;
     display: flex; align-items: center; justify-content: space-between; gap: 20px;
   }
-  .p1-banner-l { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
-  .p1-banner-t { font-size: 14px; font-weight: 500; color: #FAFAF7; line-height: 1.55; }
+  .p1-banner-l { font-size: 9px; color: #fefefe; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
+  .p1-banner-t { font-size: 14px; font-weight: 500; color: #FAFAF7; line-height: 1.55; margin-bottom: 12px; }
   .p1-banner-n { font-size: 38px; font-weight: 800; color: #FAFAF7; line-height: 1; flex-shrink: 0; white-space: nowrap; }
 
   .p1-footer {
@@ -226,7 +256,7 @@
   .p2-head { padding: 40px 44px 28px; }
   .p2-title { font-size: 30px; font-weight: 800; color: #1A1612; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.5px; }
   .p2-accent { width: 36px; height: 3px; background: #031f73; margin-bottom: 14px; }
-  .p2-lead { font-size: 13px; color: #7A7469; line-height: 1.75; max-width: 520px; }
+  .p2-lead { font-size: 13px; color: #7A7469; line-height: 1.75; max-width: 520px; margin-bottom: 18px; }
 
   .p2-feat-row { display: flex; border-top: 0.5px solid #E2DDD6; border-bottom: 0.5px solid #E2DDD6; }
   .p2-icon-col {
@@ -238,9 +268,8 @@
   .p2-feat-body-col { flex: 1; padding: 28px 32px; }
   .p2-feat-tag { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
   .p2-feat-name { font-size: 20px; font-weight: 700; color: #1A1612; margin-bottom: 10px; letter-spacing: -0.3px; }
-  .p2-feat-text { font-size: 13px; color: #5E5950; line-height: 1.75; }
+  .p2-feat-text { font-size: 13px; color: #5E5950; line-height: 1.75; margin-bottom: 14px; }
 
-  /* Page 2: full-width screenshot strip */
   .p2-ss-strip {
     height: 190px;
     border-bottom: 0.5px solid #E2DDD6;
@@ -270,8 +299,8 @@
   .p2-gc:nth-child(3), .p2-gc:nth-child(4) { border-bottom: none; }
   .p2-gc-icon { font-size: 20px; margin-bottom: 10px; }
   .p2-gc-title { font-size: 13px; font-weight: 600; color: #1A1612; margin-bottom: 5px; }
-  .p2-gc-body { font-size: 11px; color: #7A7469; line-height: 1.65; }
-  .p2-gc-tag { display: inline-block; margin-top: 8px; font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+  .p2-gc-body { font-size: 11px; color: #7A7469; line-height: 1.65; margin-bottom: 10px; }
+  .p2-gc-tag { display: inline-block; margin-top: 0; font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
   /* ── PAGE 3 ── */
   .p3-dark { background: #1A1612; padding: 44px 44px 38px; position: relative; overflow: hidden; }
@@ -279,9 +308,8 @@
   .p3-dark-c2 { position: absolute; right: 30px; top: 30px; width: 140px; height: 140px; border-radius: 50%; border: 0.5px solid rgba(255,255,255,0.04); }
   .p3-d-eyebrow { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
   .p3-d-title { font-size: 34px; font-weight: 800; color: #FAFAF7; line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.5px; }
-  .p3-d-body { font-size: 13px; color: rgba(250,250,247,0.5); line-height: 1.75; max-width: 380px; }
+  .p3-d-body { font-size: 13px; color: rgba(250,250,247,0.5); line-height: 1.75; max-width: 380px; margin-bottom: 20px; }
 
-  /* Mobile screenshots strip on dark section */
   .p3-mobile-row {
     background: #1A1612;
     padding: 0 44px 36px;
@@ -308,22 +336,6 @@
     border: none;
     border-radius: 0;
   }
-  .p3-mobile-frame .screenshot-zone::before {
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 8px,
-      rgba(255,255,255,0.015) 8px,
-      rgba(255,255,255,0.015) 9px
-    );
-  }
-  .p3-mobile-frame .ss-label { color: rgba(3,31,115,0.9); opacity: 1; }
-  .p3-mobile-frame .ss-sub { color: rgba(255,255,255,0.2); }
-  .p3-mobile-frame .ss-icon { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
-  .p3-mobile-frame .ss-icon svg { opacity: 0.35; stroke: white; }
-  .p3-mobile-frame .tick { border-color: rgba(255,255,255,0.2); opacity: 1; }
-
-  /* Notch bar on mobile frames */
   .p3-mobile-frame::before {
     content: '';
     position: absolute;
@@ -340,11 +352,11 @@
   .p3-col:last-child { border-right: none; }
   .p3-col-lbl { font-size: 9px; color: #031f73; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
   .p3-col-t { font-size: 12px; font-weight: 600; color: #1A1612; margin-bottom: 5px; }
-  .p3-col-b { font-size: 11px; color: #7A7469; line-height: 1.6; }
+  .p3-col-b { font-size: 11px; color: #7A7469; line-height: 1.6; margin-bottom: 10px; }
 
   .p3-modules { background: #F2EEE8; padding: 26px 44px; }
   .p3-mod-title { font-size: 16px; font-weight: 700; color: #1A1612; margin-bottom: 16px; letter-spacing: -0.2px; }
-  .p3-mod-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .p3-mod-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 16px; }
   .p3-mod-item { background: #FAFAF7; border: 0.5px solid #E2DDD6; padding: 10px 4px; text-align: center; }
   .p3-mod-ico { font-size: 15px; margin-bottom: 4px; }
   .p3-mod-nm { font-size: 9px; color: #5E5950; line-height: 1.3; font-weight: 500; }
@@ -359,9 +371,8 @@
   }
   .p3-asti-lbl { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
   .p3-asti-t { font-size: 18px; font-weight: 700; color: #1A1612; margin-bottom: 8px; letter-spacing: -0.2px; }
-  .p3-asti-b { font-size: 12px; color: #5E5950; line-height: 1.75; }
+  .p3-asti-b { font-size: 12px; color: #5E5950; line-height: 1.75; margin-bottom: 14px; }
 
-  /* Asti AI screenshot zone */
   .p3-asti-ss {
     margin: 20px 44px 0;
     height: 233px;
@@ -396,7 +407,7 @@
   .p4-big-l { font-size: 9px; color: rgba(255,255,255,0.65); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; text-align: center; }
   .p4-h-eyebrow { font-size: 9px; color: #031f73; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
   .p4-h-t { font-size: 26px; font-weight: 800; color: #1A1612; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.4px; }
-  .p4-h-b { font-size: 13px; color: #5E5950; line-height: 1.75; }
+  .p4-h-b { font-size: 13px; color: #5E5950; line-height: 1.75; margin-bottom: 16px; }
 
   .p4-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border-bottom: 0.5px solid #E2DDD6; }
   .p4-st { padding: 22px 0 22px 36px; border-right: 0.5px solid #E2DDD6; }
@@ -412,7 +423,6 @@
   .p4-why-item:nth-last-child(-n+2) { border-bottom: none; }
   .p4-why-dot { width: 5px; height: 5px; border-radius: 50%; background: #031f73; flex-shrink: 0; margin-top: 5px; }
 
-  /* Page 4: Growth showcase screenshot zone */
   .p4-ss-showcase {
     padding: 0 44px 28px;
     border-bottom: 0.5px solid #E2DDD6;
@@ -448,7 +458,7 @@
   .p4-road-item { background: #fff; border: 0.5px solid #E2DDD6; padding: 14px 16px; }
   .p4-road-ic { font-size: 16px; margin-bottom: 6px; }
   .p4-road-l { font-size: 11px; font-weight: 600; color: #1A1612; margin-bottom: 3px; }
-  .p4-road-s { font-size: 10px; color: #7A7469; line-height: 1.5; }
+  .p4-road-s { font-size: 10px; color: #7A7469; line-height: 1.5; margin-bottom: 8px; }
 
   .p4-cta {
     background: #1A1612;
@@ -459,7 +469,7 @@
   .p4-cta-b { font-size: 12px; color: rgba(250,250,247,0.4); line-height: 1.6; }
   .p4-cta-btn {
     background: #031f73; color: #fff;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Satoshi', sans-serif;
     font-size: 10px; font-weight: 600;
     letter-spacing: 1.5px; text-transform: uppercase;
     padding: 12px 22px; text-decoration: none;
@@ -487,7 +497,7 @@
 <div class="wrap">
 
   <!-- ══ PAGE 1: COVER ══ -->
-  <div class="page-label">— Page 1 of 4 —</div>
+   
   <div class="page">
     <div class="red-top"></div>
     <div class="left-rule"></div>
@@ -500,30 +510,30 @@
 
     <!-- Hero -->
     <div class="p1-hero">
-  <div class="p1-hero-left">
-    <div class="p1-period">June 2026 Edition</div>
-    <div class="p1-h1">
-      Transforming<br>
-      Field Ops<br>
-      <span class="p1-h1-red">Through</span>
-    </div>
-    <span class="p1-h1-italic">Intelligence & Automation.</span>
-    <div class="p1-subhead">
-      Over the last six months, Imprint has evolved into a comprehensive field operations platform — empowering organizations through a single unified ecosystem for employees, customers, collections, service operations, and business intelligence.
-    </div>
-  </div>
+      <div class="p1-hero-left">
+        <div class="p1-period">June 2026 Edition</div>
+        <div class="p1-h1">
+          Transforming<br>
+          Field Ops<br>
+          <span class="p1-h1-red">Through</span>
+        </div>
+        <span class="p1-h1-italic">Intelligence & Automation.</span>
+        <div class="p1-subhead">
+          Over the last six months, Imprint has evolved into a comprehensive field operations platform.
+        </div>
+        <a href="https://blog.astiinfotech.com/simplified-business-intelligence-11-kpis-that-senior-management-can-track-with-advanced-field-service-management-solutions/" class="link-btn">Read the full story</a>
+      </div>
 
-  <div class="p1-hero-right">
-    <img
-      src="https://i.ibb.co/nq2RPG8p/image-355.png"
-      alt="Imprint Platform Overview"
-      class="hero-dashboard-img"
-      style="
-    height: 445px;
-"
-    />
-  </div>
-</div>
+      <div class="p1-hero-right">
+        <img
+          src="https://i.ibb.co/nq2RPG8p/image-355.png"
+          alt="Imprint Platform Overview"
+          class="hero-dashboard-img"
+          style="height: 375px;"
+        />
+      </div>
+    </div>
+
     <!-- Stats -->
     <div class="divider-h"></div>
     <div class="p1-stats">
@@ -554,21 +564,25 @@
           <div class="p1-card-n">01</div>
           <div class="p1-card-t">Real-Time Field Agent Tracking</div>
           <div class="p1-card-b">Live GPS monitoring of every field employee — updated in real time.</div>
+          <a href="https://www.astiinfotech.com/employee-transport-management-system/" class="link-btn">Learn more</a>
         </div>
         <div class="p1-card alt">
           <div class="p1-card-n">02</div>
           <div class="p1-card-t">Advanced Dashboard & Analytics</div>
           <div class="p1-card-b">Centralized KPI command centre for managers and administrators.</div>
+          <a href="https://imprintai.us/" class="link-btn">Learn more</a>
         </div>
         <div class="p1-card alt">
           <div class="p1-card-n">03</div>
           <div class="p1-card-t">New Mobile-First Android Experience</div>
           <div class="p1-card-b">Redesigned app with streamlined workflows across 14+ modules.</div>
+          <a href="https://play.google.com/store/apps/details?id=com.astiinfotech.Imprint&hl=en_ZA" class="link-btn">Learn more</a>
         </div>
         <div class="p1-card">
           <div class="p1-card-n">04</div>
           <div class="p1-card-t">Asti AI — Business Assistant</div>
           <div class="p1-card-b">Enterprise-grade RAG-powered AI for instant operational answers.</div>
+          <a href="https://www.astiinfotech.com/ai-assist-customer-support/" class="link-btn">Learn more</a>
         </div>
       </div>
     </div>
@@ -578,304 +592,16 @@
       <div>
         <div class="p1-banner-l">Growth Milestone</div>
         <div class="p1-banner-t">200+ users onboarded across enterprise customers<br>with 50,000+ daily active sessions on a single platform</div>
+        <!-- <a href="#" class="link-btn-ghost">View growth report</a> -->
       </div>
       <div class="p1-banner-n">50K+</div>
     </div>
 
-    <!-- Footer -->
-    <div class="p1-footer">
-      <div>
-        <div class="footer-brand">IMPRINT</div>
-        <div class="footer-sub">Field Operations Platform · 2026</div>
-      </div>
-      <div class="dots">
-        <div class="dot on"></div><div class="dot off"></div><div class="dot off"></div><div class="dot off"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══ PAGE 2: TRACKING + DASHBOARD ══ -->
-  <div class="page-label">— Page 2 of 4 —</div>
-  <div class="page">
-    <div class="red-top"></div>
-    <div class="left-rule"></div>
-
-    <div class="p2-head">
-      <div class="eyebrow">Feature Spotlight · Field Visibility</div>
-      <div class="p2-title">Real-Time Tracking &<br>Smart Operations Dashboard</div>
-      <div class="p2-accent"></div>
-      <div class="p2-lead">Managing a distributed field workforce requires complete visibility into employee activities, customer visits, route coverage, and operational performance. Imprint delivers this through intelligent tracking and centralized dashboards.</div>
-    </div>
-
-    <div class="p2-feat-row">
-      <div class="p2-icon-col">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="26" r="12" stroke="white" stroke-width="2"/>
-          <circle cx="32" cy="26" r="5" fill="white" fill-opacity="0.88"/>
-          <path d="M32 38 L20 50" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-          <path d="M32 38 L44 50" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-          <circle cx="20" cy="50" r="3" fill="white" fill-opacity="0.5"/>
-          <circle cx="44" cy="50" r="3" fill="white" fill-opacity="0.5"/>
-          <path d="M16 18 Q20 10 32 8 Q44 10 48 18" stroke="white" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.4"/>
-        </svg>
-      </div>
-      <div class="p2-feat-body-col">
-        <div class="p2-feat-tag">Feature 01 — Now Live</div>
-        <div class="p2-feat-name">Real-Time Field Agent Tracking</div>
-        <div class="p2-feat-text">Imprint provides live GPS-based tracking of field employees — enabling managers to monitor movement, verify customer visits, optimize route planning, and improve operational accountability without a single phone call.</div>
-      </div>
-    </div>
-
-    <!-- SCREENSHOT ZONE: Two-panel — GPS Map View + Dashboard Analytics -->
-    <div class="p2-ss-strip">
-      <div class="ss-half">
-        <div class="screenshot-zone" style="width:100%;height:100%;">
-          <div class="ss-half">
-            <img src="https://i.ibb.co/xqcYRg63/image-33.png" alt="Application Screen"
-              style="width:100%; height:100%; object-fit:contain; display:block;" />
-          </div>
-        </div>
-      </div>
     
-    </div>
-
-    <div class="p2-grid">
-      <div class="p2-gc">
-        <div class="p2-gc-icon">🗺️</div>
-        <div class="p2-gc-title">Live GPS Map View</div>
-        <div class="p2-gc-body">All agents plotted on an interactive live map. Real-time position tracking, route visibility, and visit verification — updated continuously across territories.</div>
-        <div class="p2-gc-tag">Real-time tracking</div>
-      </div>
-      <div class="p2-gc">
-        <div class="p2-gc-icon">📊</div>
-        <div class="p2-gc-title">Advanced Dashboard & Analytics</div>
-        <div class="p2-gc-body">Centralized command centre with instant access to employee KPIs, attendance insights, customer analytics, collection performance, and service delivery status.</div>
-        <div class="p2-gc-tag">Feature 02</div>
-      </div>
-      <div class="p2-gc">
-        <div class="p2-gc-icon">⚡</div>
-        <div class="p2-gc-title">Workforce Accountability</div>
-        <div class="p2-gc-body">Track check-ins, visit durations, and coverage gaps automatically. Know how your team's day is progressing in real time — not at end of day reports.</div>
-        <div class="p2-gc-tag">Activity insights</div>
-      </div>
-      <div class="p2-gc">
-        <div class="p2-gc-icon">🔔</div>
-        <div class="p2-gc-title">Smart Reporting & Alerts</div>
-        <div class="p2-gc-body">Instant alerts for off-route agents and missed visits. Operational KPI data in a single interface so managers make faster, informed business decisions.</div>
-        <div class="p2-gc-tag">Operational intelligence</div>
-      </div>
-    </div>
-
-    <div class="p1-footer">
-      <div>
-        <div class="footer-brand">IMPRINT</div>
-        <div class="footer-sub">Field Operations Platform · 2026</div>
-      </div>
-      <div class="footer-pg">02 / 04</div>
-      <div class="dots">
-        <div class="dot off"></div><div class="dot on"></div><div class="dot off"></div><div class="dot off"></div>
-      </div>
-    </div>
   </div>
 
-
-  <!-- ══ PAGE 3: MOBILE APP + ASTI AI ══ -->
-  <div class="page-label">— Page 3 of 4 —</div>
-  <div class="page">
-    <div class="red-top"></div>
-    <div class="left-rule"></div>
-
-    <div class="p3-dark">
-      <div class="p3-dark-c1"></div>
-      <div class="p3-dark-c2"></div>
-      <div class="p3-d-eyebrow">Feature 03 — Mobile-First Redesign</div>
-      <div class="p3-d-title">The New Imprint<br>Mobile Experience</div>
-      <div class="p3-d-body">The Imprint Android application has been redesigned to provide a faster, simpler, and more productive experience. With unified navigation and streamlined workflows, field employees perform daily tasks with minimal effort while staying connected to business operations in real time.</div>
-    </div>
- 
-
-    <div class="p3-cols">
-      <div class="p3-col">
-        <div class="p3-col-lbl">Navigation</div>
-        <div class="p3-col-t">Unified Home Flow</div>
-        <div class="p3-col-b">Agents land on a personalized dashboard with daily tasks, routes, and targets — no digging through menus.</div>
-      </div>
-      <div class="p3-col">
-        <div class="p3-col-lbl">Efficiency</div>
-        <div class="p3-col-t">Streamlined Workflows</div>
-        <div class="p3-col-b">Log a visit, submit a collection, or raise a ticket — every critical action is 2 taps from home.</div>
-      </div>
-      <div class="p3-col">
-        <div class="p3-col-lbl">Design</div>
-        <div class="p3-col-t">Clean Visual Language</div>
-        <div class="p3-col-b">Bold typography, high-contrast cards, and a consistent system that's instantly recognizable by any field user.</div>
-      </div>
-    </div>
-
-    <div class="p3-modules">
-      <div class="p3-mod-title">14+ Business Modules — One Seamless App</div>
-      <div class="p3-mod-grid">
-        <div class="p3-mod-item"><div class="p3-mod-ico">🏠</div><div class="p3-mod-nm">Home</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">📅</div><div class="p3-mod-nm">Daily Activity</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">💬</div><div class="p3-mod-nm">Communication</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">👥</div><div class="p3-mod-nm">Customer</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">📋</div><div class="p3-mod-nm">Lead & Collection</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">💰</div><div class="p3-mod-nm">Payroll</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">📦</div><div class="p3-mod-nm">Inventory</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">🎫</div><div class="p3-mod-nm">Tickets & Services</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">🆘</div><div class="p3-mod-nm">Support & FAQ</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">⚙️</div><div class="p3-mod-nm">Settings</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">📈</div><div class="p3-mod-nm">Reports & Analytics</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">🎯</div><div class="p3-mod-nm">Target</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">🤖</div><div class="p3-mod-nm">Asti AI</div></div>
-        <div class="p3-mod-item"><div class="p3-mod-ico">💭</div><div class="p3-mod-nm">Chat</div></div>
-      </div>
-    </div>
-
-    <div class="p3-asti">
-      <div class="p3-asti-badge">AI</div>
-      <div>
-        <div class="p3-asti-lbl">Feature 04 — Enterprise AI Intelligence</div>
-        <div class="p3-asti-t">Meet Asti — Intelligent Business Assistant</div>
-        <div class="p3-asti-b">Asti AI is an enterprise-grade RAG-powered assistant integrated directly into Imprint. Employees and managers access business information instantly through natural conversations — retrieving customer details, service status, collection data, company policies, and activity insights without manual searches or support dependencies. Organizational knowledge meets AI-powered search.</div>
-      </div>
-    </div>
- 
-    <!-- SCREENSHOT ZONE: Asti AI chat interface + knowledge panel -->
-    <div class="p3-asti-ss">
-      <div class="ss-part" style="display:flex;justify-content:center;align-items:center;height: 200px;">
-         <img src="https://i.ibb.co/0ydmkPxR/Screenshot-2026-06-22-151701.png" alt="" style="width:100%;max-width:100%;height:220px;display:block;border-radius:12px;" >
-         
-      </div>
-      
-    </div>
-
-    <div class="p1-footer">
-      <div>
-        <div class="footer-brand">IMPRINT</div>
-        <div class="footer-sub">Field Operations Platform · 2026</div>
-      </div>
-      <div class="footer-pg">03 / 04</div>
-      <div class="dots">
-        <div class="dot off"></div><div class="dot off"></div><div class="dot on"></div><div class="dot off"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══ PAGE 4: GROWTH + ROADMAP ══ -->
-  <div class="page-label">— Page 4 of 4 —</div>
-  <div class="page">
-    <div class="red-top"></div>
-    <div class="left-rule"></div>
-
-    <div class="p4-hero">
-      <div class="p4-hero-l">
-        <div class="p4-h-eyebrow">Growth Milestone · Feature 05</div>
-        <div class="p4-h-t">Expanding Our Digital<br>Operations Ecosystem</div>
-        <div class="p4-h-b">Over the past six months, Imprint has continued its growth journey — helping organizations streamline field operations, improve workforce visibility, automate business processes, and enhance operational efficiency across multiple enterprise implementations.</div>
-      </div>
-      <div class="p4-hero-r">
-        <div class="p4-big-n">50K+</div>
-        <div class="p4-big-l">Daily Active<br>Sessions</div>
-      </div>
-    </div>
-
-    <div class="p4-stats">
-      <div class="p4-st">
-        <div class="p4-st-n">50K+</div>
-        <div class="p4-st-l">Daily Sessions</div>
-      </div>
-      <div class="p4-st">
-        <div class="p4-st-n dk">200+</div>
-        <div class="p4-st-l">Users Onboarded</div>
-      </div>
-      <div class="p4-st">
-        <div class="p4-st-n dk">14+</div>
-        <div class="p4-st-l">Business Modules</div>
-      </div>
-      <div class="p4-st">
-        <div class="p4-st-n dk">10+</div>
-        <div class="p4-st-l">Enterprise Clients</div>
-      </div>
-    </div>
-
-    <!-- Why orgs choose Imprint -->
-    <div class="p4-why">
-      <div class="p4-why-t">Why Organizations Choose Imprint</div>
-      <div class="p4-why-grid">
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Complete field workforce visibility</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>AI-powered business assistance</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Digital lead and collection management</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Automated attendance and payroll workflows</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Integrated ticket and service operations</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Data-driven decision making at every level</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Centralized inventory management</div>
-        <div class="p4-why-item"><div class="p4-why-dot"></div>Real-time employee tracking and accountability</div>
-      </div>
-    </div>
 
   
-
-    <!-- Roadmap -->
-    <div class="p4-road">
-      <div class="p4-road-t">What's Coming Next — H2 2026 Roadmap</div>
-      <div class="p4-road-grid">
-        <div class="p4-road-item">
-          <div class="p4-road-ic">🎯</div>
-          <div class="p4-road-l">Predictive Lead Scoring</div>
-          <div class="p4-road-s">AI-driven scoring to prioritize high-value leads automatically</div>
-        </div>
-        <div class="p4-road-item">
-          <div class="p4-road-ic">📊</div>
-          <div class="p4-road-l">Advanced Business Analytics</div>
-          <div class="p4-road-s">Executive dashboards with deep operational reporting</div>
-        </div>
-        <div class="p4-road-item">
-          <div class="p4-road-ic">🤖</div>
-          <div class="p4-road-l">Enhanced Asti AI</div>
-          <div class="p4-road-s">Expanded capabilities with automated operational recommendations</div>
-        </div>
-        <div class="p4-road-item">
-          <div class="p4-road-ic">👥</div>
-          <div class="p4-road-l">Smart Workforce Insights</div>
-          <div class="p4-road-s">Productivity intelligence with proactive field performance alerts</div>
-        </div>
-        <div class="p4-road-item">
-          <div class="p4-road-ic">🔗</div>
-          <div class="p4-road-l">Expanded Customer Management</div>
-          <div class="p4-road-s">Deeper customer engagement tracking and relationship tools</div>
-        </div>
-        <div class="p4-road-item">
-          <div class="p4-road-ic">📈</div>
-          <div class="p4-road-l">Improved Reporting Suite</div>
-          <div class="p4-road-s">Automated reports with custom KPI templates for every team</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="p4-cta">
-      <div>
-        <div class="p4-cta-t">Ready to Transform Your Field Operations?</div>
-        <div class="p4-cta-b">Imprint remains committed to delivering innovative solutions that simplify operations, empower employees, and drive business growth.</div>
-      </div>
-      <a href="#" class="p4-cta-btn">Explore the Platform ↗</a>
-    </div>
-
-    <!-- Sign-off -->
-    <div class="p4-signoff">
-      <div>
-        <div class="p4-so-brand">IMPRINT</div>
-        <div class="p4-so-sub">Field Operations Platform &nbsp;·&nbsp; imprint.app</div>
-      </div>
-      <div class="dots">
-        <div class="dot off"></div><div class="dot off"></div><div class="dot off"></div><div class="dot on"></div>
-      </div>
-      <div class="p4-so-yr">2026</div>
-    </div>
-  </div>
 
 </div>
 </body>
